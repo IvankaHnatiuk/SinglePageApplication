@@ -1,11 +1,40 @@
+import { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router";
+
 export default function Register(){
+
+    const {register} = useContext(UserContext);
+
+    const [userName, setUserName] = useState();
+    const [userEmail, setUserEmail] = useState();
+    const navigate = useNavigate();
+
+    const handleChange = (e)=>{
+        if (e.target.id === 'name') {
+            setUserName(e.target.value);
+        }else if(e.target.id === 'email'){
+            setUserEmail(e.target.value);
+        }
+    }
+
+    const handlesubmit = (e)=>{
+        e.preventDefault();
+        if (userName, userEmail){
+            register({name: userName, email: userEmail});
+        }
+        navigate('/');
+    }
+
+
     return(
-        <>
-        <h1>Register Page</h1>
-        <form action="" method="post">
+        <section className="form_section">
+       
+        <form id="custom_form"  onSubmit={handlesubmit}>
+             <h1>Register Page</h1>
             <div>
-             <label htmlFor="userName">Inserisci il tuo nome </label>
-             <input type="text" id="userName" name="userName" />
+             <label htmlFor="name">Inserisci il tuo nome </label>
+             <input type="text" id="name" name="name" onChange={handleChange} />
             </div>
                 <br />
             <div>
@@ -14,8 +43,8 @@ export default function Register(){
             </div>
                  <br />
             <div>
-             <label htmlFor="userEmail">Inserisci la tua email </label>
-             <input type="email" id="userEmail" name="userEmail" />
+             <label htmlFor="email">Inserisci la tua email </label>
+             <input type="email" id="email" name="email" onChange={handleChange}/>
             </div>
                  <br />
             <div>
@@ -28,8 +57,8 @@ export default function Register(){
              <input type="password" id="confirmPassword" name="confirmPassword" />
             </div>
                  <br />
-            <button type="submit">Registrati</button>
+            <button>Registrati</button>
         </form>
-        </>
+        </section>
     )
 }

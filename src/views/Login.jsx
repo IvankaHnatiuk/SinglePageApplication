@@ -3,7 +3,7 @@ export default function Login(){
         <>
         <h1>Login Page</h1>
 
-        <form action="" method="post">
+        <form custom_form>
             <div>
              <label htmlFor="userEmail">Inserisci il tuo email </label>
              <input type="email" id="userEmail" name="userEmail" />
